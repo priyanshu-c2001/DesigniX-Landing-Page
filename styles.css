@@ -410,6 +410,15 @@ body {
     animation-delay: 4s;
 }
 
+#quote {
+    color: #FF6347;
+}
+
+.top-cont-num {
+    font-size: large;
+    font-weight: bold;
+}
+
 /* New styles for the revenue shine bar */
 .revenue-shine-bar {
     display: inline-block;
@@ -622,10 +631,16 @@ section {
 }
 
 .section-title {
-    font-size: 3rem;
+    font-size: clamp(2.2rem, 4vw, 3rem);
+    /* Makes the font size responsive */
     font-weight: 700;
     margin-bottom: 1rem;
     color: var(--primary-color);
+    white-space: nowrap;
+    /* Prevents the title from wrapping to a new line */
+    overflow: hidden;
+    /* Hides any overflow to prevent horizontal scrolling */
+    text-overflow: ellipsis;
 }
 
 .section-subtitle {
@@ -1105,7 +1120,8 @@ section {
     }
 
     .hero-visual {
-        height: 300px;
+        display: none;
+
     }
 
     .hero-content {
@@ -1127,10 +1143,11 @@ section {
         /* Make the smaller text more compact for mobile */
     }
 
-    #top-title{
+    #top-title {
         margin-right: 186px;
     }
-    #bottom-title{
+
+    #bottom-title {
         margin-left: 86px;
     }
 
