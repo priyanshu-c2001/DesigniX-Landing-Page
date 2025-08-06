@@ -119,8 +119,8 @@ body {
     top: 0;
     width: 100%;
     /* Changed background to primary color (black) */
-    background: var(--primary-color);
-    backdrop-filter: blur(10px);
+    background-color: var(--primary-color);
+    /* backdrop-filter: blur(10px); */
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     /* Lighter border for dark background */
     z-index: 1000;
@@ -285,13 +285,12 @@ body {
 
 .hero-content {
     z-index: 2;
+    padding-top: 4.5rem;
+    /* Pushes the content block down */
 }
 
 .hero-title {
-    font-size: clamp(3rem, 8vw, 6rem);
-    font-weight: 700;
-    line-height: 1.1;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     color: var(--primary-color);
 }
 
@@ -306,14 +305,41 @@ body {
     animation-delay: 0.2s;
 }
 
+.title-line:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
 .hero-subtitle {
     font-size: 1.2rem;
     color: var(--gray-medium);
-    margin-bottom: 3rem;
+    margin-bottom: 1rem;
+    /* Reduced gap */
     max-width: 500px;
     transform: translateY(50px);
     opacity: 0;
     animation: slideUp 1s ease-out 0.4s forwards;
+}
+
+/* Add these new styles for the updated headline */
+.hero-title-small {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 600;
+    color: var(--primary-color);
+    line-height: 1.2;
+    letter-spacing: 0.02em;
+}
+
+.hero-title-large {
+    font-size: clamp(4rem, 12vw, 8rem);
+    font-weight: 700;
+    color: var(--accent-color);
+    line-height: 1;
+}
+
+/* Style for the bolded text in the subtitle */
+.hero-subtitle strong {
+    font-weight: 600;
+    color: var(--primary-color);
 }
 
 .hero-buttons {
@@ -382,6 +408,44 @@ body {
     bottom: 15%;
     left: 20%;
     animation-delay: 4s;
+}
+
+/* New styles for the revenue shine bar */
+.revenue-shine-bar {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    background-color: #f8f9fa;
+    border-radius: 50px;
+    margin-bottom: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.revenue-shine-bar::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 20px;
+    height: 200%;
+    background-color: rgba(255, 255, 255, 0.7);
+    transform: rotate(25deg);
+    filter: blur(15px);
+    animation: shine-effect 4s ease-in-out infinite;
+}
+
+@keyframes shine-effect {
+    0% {
+        left: -50%;
+    }
+
+    100% {
+        left: 150%;
+    }
 }
 
 /* Add these styles for the Design Comparison section */
@@ -946,8 +1010,8 @@ section {
 }
 
 .footer-logo img {
-    width: 140px;
-    height: 40px;
+    width: 190px;
+    height: 50px;
 }
 
 .footer-logo .logo-text {
@@ -998,27 +1062,23 @@ section {
 /* Responsive Design */
 @media (max-width: 768px) {
     .nav-menu {
-        position: fixed;
-        top: 80px;
-        left: -100%;
-        width: 100%;
-        height: calc(100vh - 80px);
-        /* Changed background to primary color (black) for consistency */
-        background: var(--primary-color);
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 2rem;
-        transition: var(--transition);
-        box-shadow: var(--shadow);
+        position: static;
+        left: auto;
+        width: auto;
+        height: auto;
+        box-shadow: none;
+        flex-direction: row;
+        justify-content: flex-end;
+        gap: 0;
+        transition: none;
     }
 
     .nav-menu.active {
-        left: 0;
+        left: auto;
     }
 
     .nav-toggle {
-        display: flex;
+        display: none;
     }
 
     .nav-toggle.active span:nth-child(1) {
@@ -1033,6 +1093,11 @@ section {
         transform: rotate(-45deg) translate(7px, -6px);
     }
 
+    .btn-nav {
+        padding: 8px 18px;
+        font-size: 0.85rem;
+    }
+
     .hero-container {
         grid-template-columns: 1fr;
         text-align: center;
@@ -1042,6 +1107,39 @@ section {
     .hero-visual {
         height: 300px;
     }
+
+    .hero-content {
+        padding-top: 2rem;
+        /* Adjusts the downward shift for mobile */
+    }
+
+    .title-line {
+        font-size: 4rem;
+    }
+
+    .hero-title {
+        line-height: 1.15;
+        /* Adjust line height for better stacking on mobile */
+    }
+
+    .hero-title-small {
+        font-size: 2.2rem;
+        /* Make the smaller text more compact for mobile */
+    }
+
+    #top-title{
+        margin-right: 186px;
+    }
+    #bottom-title{
+        margin-left: 86px;
+    }
+
+    .hero-title-large {
+        font-size: 5rem;
+        /* Reduce the largest font size to fit mobile screens */
+    }
+
+    /* ... other mobile styles ... */
 
     .services-grid {
         grid-template-columns: 1fr;
@@ -1085,6 +1183,43 @@ section {
     .btn-secondary {
         padding: 12px 24px;
         font-size: 0.9rem;
+    }
+
+    /* Inside your @media (max-width: 768px) block, add this new code. */
+
+    .floating-card {
+        /* Ensure cards are absolutely positioned relative to their container */
+        position: absolute;
+    }
+
+    /* Card 1: Positioned to the left */
+    .card-1 {
+        width: 180px;
+        height: 130px;
+        top: 15%;
+        left: 0;
+        z-index: 1;
+    }
+
+    /* Card 2: Larger and centered */
+    .card-2 {
+        width: 190px;
+        height: 190px;
+        top: 50%;
+        left: 50%;
+        /* This transform centers the card and nudges it up */
+        transform: translate(-50%, -50%);
+        z-index: 1;
+        /* Bring this card to the front */
+    }
+
+    /* Card 3: Positioned to the right */
+    .card-3 {
+        width: 140px;
+        height: 100px;
+        top: 55%;
+        right: 0;
+        z-index: 2;
     }
 }
 
